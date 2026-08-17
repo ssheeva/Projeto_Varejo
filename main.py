@@ -11,7 +11,11 @@ print(df.head())
 
 #df = df.dropna(axis=1, how="all")
 
-df["PR_CAT"] = df["PR_CAT"].fillna("Sem Categoria")
-df["PR_CAT"] = df["PR_CAT"].str.strip().replace("#N/D", "Sem Categoria")
+#df["PR_CAT"] = df["PR_CAT"].fillna("Sem Categoria")
+#df["PR_CAT"] = df["PR_CAT"].str.strip().replace("#N/D", "Sem Categoria")
 
 df = df.drop_duplicates().copy()
+
+df["DATA"] = pd.to_datetime(
+    df["DATA"], format="%d/%m/%Y", errors="coerce"
+)
