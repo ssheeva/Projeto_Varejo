@@ -24,10 +24,16 @@ df["DATA"] = pd.to_datetime(
 
 df.to_csv("varejo_limpo.csv", index=False, encoding="utf-8-sig")
 
-#filhos
+#filhos, a media é 1.14
 
-filhos = df["CL_FHL"]
-print(filhos.mean())
-print(filhos.median())
-print(filhos.mode().iloc[0])
-print(filhos.quantile([0.25, 0.50, 0.75]))
+#filhos = df["CL_FHL"]
+#print(filhos.mean())
+#print(filhos.median())
+#print(filhos.mode().iloc[0])
+#print(filhos.quantile([0.25, 0.50, 0.75]))
+
+compras = df.drop_duplicates(subset="CO_ID")
+compras_por_genero = compras.groupby("CL_GENERO")["CO_ID"].nunique()
+
+itens_por_categoria = df.groupby("PR_CAT").size()
+
