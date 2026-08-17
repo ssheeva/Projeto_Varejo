@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib
+import matplotlib.pyplot as plt
 
 df = pd.read_csv("varejo.csv", sep=";")
 #print(df.shape)
@@ -36,4 +38,9 @@ compras = df.drop_duplicates(subset="CO_ID")
 compras_por_genero = compras.groupby("CL_GENERO")["CO_ID"].nunique()
 
 itens_por_categoria = df.groupby("PR_CAT").size()
+
+compras_por_genero.plot(kind="bar")
+plt.title("Compras únicas por gênero")
+plt.tight_layout()
+plt.savefig("resultados/compras_por_genero.png")
 
